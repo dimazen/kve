@@ -1,0 +1,38 @@
+// Do not modify. File generated automatically.
+
+public enum {{ name }} {
+{% for encoded_value in encoded_values %}
+  case {{ encoded_value.key }}
+{% endfor %}
+  public var value: String {
+    let encodingKeyBytes: [UInt8] = [{{ encoding_key|join:", " }}]
+    let encodingKey = Data(bytes: encodingKeyBytes)
+
+    switch self {
+    {% for entry in encoded_key_values %}
+    case {{ entry.key }}:
+      let data = Data(bytes: [{{ entry.value.value|join:", " }}]).encoded(by: encodingKey)
+      return String(data: data, encoding: .ascii)!
+    {% endfor %}
+    }
+  }
+}
+
+private extension Data {
+    func encoded(by key: Data) -> Data {
+        var copy = self
+
+        var keyIndex = 0
+        for index in 0..<count {
+            copy[index] ^= key[keyIndex]
+
+            keyIndex += 1
+
+            if keyIndex == count {
+                keyIndex = 0
+            }
+        }
+
+        return copy
+    }
+}
