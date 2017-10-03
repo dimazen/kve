@@ -8,11 +8,11 @@ swift build -c release
 rm -rf "tmp"
 mkdir -p "tmp/bin"
 
-cp ".build/release/KeyValuesEncoder" "tmp/bin/"
+cp ".build/release/kve" "tmp/bin/"
 cp -r "resources" "tmp"
 
 cd "tmp"
-zip -r "../KeyValuesEncoder.zip" *
+zip -r "../kve.zip" *
 cd -
 
 rm -rf "tmp"
