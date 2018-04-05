@@ -1,5 +1,7 @@
 // Do not modify. File generated automatically.
 
+import Foundation
+
 public struct {{ name }} {
 {% for entry in encoded_key_values %}
   public static var {{ entry.key }}: String {
@@ -25,7 +27,7 @@ private extension Data {
 
             keyIndex += 1
 
-            if keyIndex == count {
+            if keyIndex == key.count {
                 keyIndex = 0
             }
         }

@@ -1,5 +1,7 @@
 // Do not modify. File generated automatically.
 
+import Foundation
+
 public enum {{ name }} {
 {% for encoded_value in encoded_values %}
   case {{ encoded_value.key }}
@@ -28,7 +30,7 @@ private extension Data {
 
             keyIndex += 1
 
-            if keyIndex == count {
+            if keyIndex == key.count {
                 keyIndex = 0
             }
         }
